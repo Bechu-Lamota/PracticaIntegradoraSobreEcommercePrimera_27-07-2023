@@ -10,7 +10,7 @@ app.engine('handlebars', handlebars.engine())
 app.set('views', __dirname + 'views')
 app.set('view engine', 'handlebars')
 
-const MONGODB_CONNECT = 'mongodb'
+const MONGODB_CONNECT = 'mongodb'// 'mongodb: Acá debo pegar toda la url de mongoDb. Mi BD.'
 mongoose.connect(MONGODB_CONNECT)
     .then(() => console.log('BD conectada'))
     .catch((e) => console.log(e))
