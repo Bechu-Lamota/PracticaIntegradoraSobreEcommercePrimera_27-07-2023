@@ -1,0 +1,18 @@
+<table id="productos">
+    <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Borrar</th>
+    </tr>
+    {{#each products}}
+    <tr>
+        <td>{{this.title}}</td>
+        <td>{{this.code}}</td>
+        <td>{{this.price}}</td>
+        <td><button class="deleteBtn" id="deleteBtn_{{this.id}}" onclick="deleteProduct({{this.id}})"></button></td>
+    </tr>
+    {{/each}}
+</table>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/products.js"></script>
