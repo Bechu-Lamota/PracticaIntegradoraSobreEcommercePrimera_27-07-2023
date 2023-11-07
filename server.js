@@ -4,7 +4,7 @@ const handlebars = require('express-handlebars')
 const productRouter = require('./router/productsRouter')
 const viewsRouter = require('./router/viewsRouter')
 const chatRouter = require('./router/chatRouter')
-const init = require('./utils/io')
+const { Server } = require('socket.io')
 
 const app = express()
 
@@ -31,7 +31,6 @@ app.get('/', (req, res) => {
 
 const PORT = 8080
 const httpServer = app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`))
-
 
 const io = new Server(httpServer)
 const users = []
