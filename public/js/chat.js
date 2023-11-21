@@ -21,12 +21,10 @@ socket.on('notification', notif => { //De esta manera todas las veces que inicie
 
 messageButton.addEventListener('click', (e) => {
 	const message = messageInput.value
-
-	if (message) {
-		socket.emit('newMessage', message)
-	}
-
 	console.log({ message })
+	if (message) {
+	socket.emit('newMessage', message)
+	}
 })
 
 socket.on('message', messageString => {
@@ -35,6 +33,10 @@ socket.on('message', messageString => {
 	<div>${message.user}: ${message.message} </div>
 	`
 })
+
+socket.on('newUser', user => {
+	console.log({ user })
+  })
 
 //Para tener el arreglo de los mensajes anteriores:
 socket.on('messages', messagesString => {
