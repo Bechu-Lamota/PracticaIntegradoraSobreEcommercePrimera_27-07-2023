@@ -19,7 +19,7 @@ chatRouter.post('/login', (req, res) => {
 })
 
 chatRouter.get('/chat', (req, res) => {
-	return res.render('index')
+	return res.render('chat')
 })
 
 module.exports = chatRouter
