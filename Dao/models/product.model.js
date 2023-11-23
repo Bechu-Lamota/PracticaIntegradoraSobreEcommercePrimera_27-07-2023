@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const productSchema = mongoose.Schema({
+    id: String,
     title: {
         type:String,
         unique:true

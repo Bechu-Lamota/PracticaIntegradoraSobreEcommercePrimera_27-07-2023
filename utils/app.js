@@ -1,6 +1,7 @@
 const express = require('express')
 const handlebars = require('express-handlebars')
 const { Server } = require('socket.io')
+const mongoose = require('mongoose')
 
 const app = express()
 
@@ -12,6 +13,11 @@ app.set('views', './views')
 app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
+
+const MONGODB_CONNECT = 'mongodb+srv://lamotaas:bWSantGjgrt5fXQ5@cluster0.z23acmk.mongodb.net/ecommerce?retryWrites=true&w=majority'
+mongoose.connect(MONGODB_CONNECT)
+    .then(() => console.log('BD conectada'))
+    .catch((e) => console.log(e))
 
 const PORT = 8080
 const httpServer = app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`))
@@ -48,6 +54,7 @@ io.on('connection', socket => {
 		io.emit('message', JSON.stringify(newMessage))
 	})
 })
+
 
 module.exports = {
     app,

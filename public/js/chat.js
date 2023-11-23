@@ -5,13 +5,9 @@ const messageInput = document.getElementById('messageInput')
 const messageButton = document.getElementById('messageButton')
 const notificationContainer = document.getElementById('notificationContainer')
 
-console.log({ messageContainer, messageInput, messageButton, notificationContainer })
-
 const params = Qs.parse(window.location.search, { //Lo que hace esta libreria que importamos en index.handlebars es parsear todos mis parametros en este caso los users.
 	ignoreQueryPrefix: true
 })
-
-console.log(params)
 
 socket.emit('joinChat', params.username) //cuando mi archivo cargue, quiero que me ingrese al chat
 
@@ -19,19 +15,16 @@ socket.on('notification', notif => { //De esta manera todas las veces que inicie
 	notificationContainer.innerHTML = notif //Es como una notificacion.
 })
 
-messageButton.addEventListener('click', (e) => {
+messageButton.addEventListener('click', () => {
 	const message = messageInput.value
-	console.log({ message })
 	if (message) {
-	socket.emit('newMessage', message)
+		socket.emit('newMessage', message)
 	}
 })
 
-socket.on('message', messageString => {
-	const message = JSON.parse(messageString)
-	messageContainer.innerHTML += `
-	<div>${message.user}: ${message.message} </div>
-	`
+socket.on('message', message => {
+	const parsedMessage = JSON.parse(message)
+	messageContainer.innerHTML += `<div>${parsedMessage.user}: ${parsedMessage.message} </div>`
 })
 
 socket.on('newUser', user => {
@@ -39,12 +32,10 @@ socket.on('newUser', user => {
   })
 
 //Para tener el arreglo de los mensajes anteriores:
-socket.on('messages', messagesString => {
-	const messages = JSON.parse(messagesString)
-	messageContainer.innerHTML = ''
-	messages.forEach(message => {
-		messageContainer.innerHTML += `
-		<div>${message.user}: ${message.message} </div>
-		`
+socket.on('messages', messages => {
+	const parsedMessages = JSON.parse(messages);
+	messageContainer.innerHTML = '';
+	parsedMessages.forEach(msg => {
+		messageContainer.innerHTML += `<div>${msg.user}: ${msg.message} </div>`
 	})
 })

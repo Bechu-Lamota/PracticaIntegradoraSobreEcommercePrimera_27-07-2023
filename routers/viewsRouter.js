@@ -1,13 +1,14 @@
 const {Router} = require('express')
-const ProductManager = require('../Dao/manager/productManager')
-const productManager = new ProductManager()
+const ProductManager = require('../dao/manager/productManager')
 const productsViewsRouter = Router()
+
+const productManager = new ProductManager()
 
 
 productsViewsRouter.get('/', async (req, res) => {
     const products = await productManager.getProducts()
 
-    res.render('products/products', {products})
+    res.render('products', {products})
 })
 
 module.exports = productsViewsRouter

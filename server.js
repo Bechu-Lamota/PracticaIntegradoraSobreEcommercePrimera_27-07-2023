@@ -1,20 +1,11 @@
-//const mongoose = require('mongoose')
-//const productRouter = require('./router/productsRouter')
-//const viewsRouter = require('./router/viewsRouter')
 const chatRouter = require('./routers/chatRouter')
 const { app } = require('./utils/app')
-
-/*
-const MONGODB_CONNECT = 'mongodb+srv://lamota_as:<MongoDBS>@lamota-as.jrmckat.mongodb.net/'
-mongoose.connect(MONGODB_CONNECT)
-    .then(() => console.log('BD conectada'))
-    .catch((e) => console.log(e))
-*/
-
-//app.use('/api/products', productRouter)
-//app.use('/products', viewsRouter)
+const productRouter = require('./routers/productsRouter')
+const viewsRouter = require('./routers/viewsRouter')
 
 app.use(chatRouter)
+app.use('/api/products' ,productRouter)
+app.use(viewsRouter)
 
 app.get('/', (req, res) => {
     return res.render('home')
@@ -25,4 +16,16 @@ app.get('/healtcheck', (req, res) => {
 		Status: 'Running',
 		date: new Date()
 	})
+})
+
+app.get('/home', (req, res) => {
+    return res.render('home')
+})
+
+app.get('/realTimeProducts', (req, res) => {
+    return res.render('realtimeproducts')
+})
+
+app.get('/api/products', (req, res) => {//Devuelve los productos en formato json
+	return res.json(productos)
 })
