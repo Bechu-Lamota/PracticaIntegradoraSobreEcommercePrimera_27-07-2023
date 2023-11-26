@@ -4,7 +4,6 @@ const productRouter = Router()
 
 const productManager = new ProductManager()
 
-
 productRouter.get('/', async (req, res) => {
     const products = await productManager.getProducts()
 

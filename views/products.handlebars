@@ -2,14 +2,13 @@
     <tr>
         <th>Nombre</th>
         <th>Precio</th>
-        <th>Borrar</th>
+        <th>Precio</th>
     </tr>
     {{#each products}}
     <tr>
         <td>{{this.title}}</td>
-        <td>{{this.code}}</td>
+        <td>{{this.description}}</td>
         <td>{{this.price}}</td>
-        <td><button class="deleteBtn" id="deleteBtn_{{this.id}}" onclick="deleteProduct({{this.id}})"></button></td>
     </tr>
     {{/each}}
 </table>

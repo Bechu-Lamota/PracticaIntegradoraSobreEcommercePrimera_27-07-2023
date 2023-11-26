@@ -5,7 +5,7 @@ const productsViewsRouter = Router()
 const productManager = new ProductManager()
 
 
-productsViewsRouter.get('/', async (req, res) => {
+productsViewsRouter.get('/products', async (req, res) => {
     const products = await productManager.getProducts()
 
     res.render('products', {products})

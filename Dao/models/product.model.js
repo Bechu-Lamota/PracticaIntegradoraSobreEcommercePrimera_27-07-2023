@@ -3,8 +3,8 @@ const mongoose = require('mongoose')
 const productSchema = mongoose.Schema({
     id: String,
     title: {
-        type:String,
-        unique:true
+        type: String,
+        unique: true
     },
     price: Number,
     code: String,
