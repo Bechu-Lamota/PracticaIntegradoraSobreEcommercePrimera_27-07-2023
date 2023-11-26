@@ -19,4 +19,8 @@ const cartSchema = Schema({
     },
 })
 
+cartSchema.pre('findProduct', function () {
+    this.populate('products.product')
+})
+
 module.exports = model('carts', cartSchema)
